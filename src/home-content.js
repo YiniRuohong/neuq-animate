@@ -139,7 +139,6 @@ export const homeContent = {
         icon: "Sparkles",
         imageKey: "older",
         tone: "pink",
-        footerNote: "Produced by 旖旎若鸿",
       },
       {
         title: "激光雕刻排单",
@@ -149,7 +148,6 @@ export const homeContent = {
         icon: "Wrench",
         imageKey: "younger",
         tone: "blue",
-        footerNote: "网络加速由 旖旎若鸿 提供",
       },
     ],
   },
@@ -205,7 +203,6 @@ export const homeContent = {
     actionLabel: "加入 QQ 群",
   },
   footer: {
-    notices: ["Produced by 旖旎若鸿", "网络加速由 旖旎若鸿 提供"],
     githubLabel: "GitHub 仓库目录",
   },
 };

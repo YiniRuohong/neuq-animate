@@ -837,7 +837,7 @@ h1 {
 .site-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 18px;
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
@@ -845,12 +845,6 @@ h1 {
   color: rgba(78, 81, 103, 0.9);
   font-size: 13px;
   font-weight: 800;
-}
-
-.footer-notices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
 }
 
 .site-footer a {
@@ -959,7 +953,7 @@ h1 {
 
   .site-footer {
     display: grid;
-    justify-items: start;
+    justify-items: end;
   }
 }
 

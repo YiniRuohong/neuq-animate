@@ -190,7 +190,6 @@ function ToolPortal() {
                 <strong>
                   {homeContent.tools.enterLabel} <ExternalLink size={16} />
                 </strong>
-                <small>{tool.footerNote}</small>
               </div>
               <div className="tool-visual" aria-hidden="true">
                 <Icon size={28} />
@@ -284,11 +283,6 @@ function Join() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="footer-notices">
-        {homeContent.footer.notices.map((notice) => (
-          <span key={notice}>{notice}</span>
-        ))}
-      </div>
       <a href={homeContent.links.github} target="_blank" rel="noreferrer">
         <Github size={18} />
         {homeContent.footer.githubLabel}
