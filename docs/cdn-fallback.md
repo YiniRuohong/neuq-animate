@@ -20,7 +20,12 @@ Required GitHub Secrets:
 Current constants:
 
 - Origin: `202.61.246.240`
-- GoEdge nodes: `47.236.2.125`, `103.232.213.191`
+- GoEdge nodes:
+  - US: `45.202.240.235`
+  - JP: `103.232.213.191`
+  - HK: `103.247.29.99`
+  - SG: `47.236.2.125`
+  - DE: `202.61.246.240`
 - Domains:
   - `neuq-ani.me`
   - `www.neuq-ani.me`
