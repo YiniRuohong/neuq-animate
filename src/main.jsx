@@ -283,6 +283,11 @@ function Join() {
 function Footer() {
   return (
     <footer className="site-footer">
+      <div className="footer-notices">
+        {homeContent.footer.notices.map((notice) => (
+          <span key={notice}>{notice}</span>
+        ))}
+      </div>
       <a href={homeContent.links.github} target="_blank" rel="noreferrer">
         <Github size={18} />
         {homeContent.footer.githubLabel}
