@@ -167,7 +167,7 @@ nav a:hover {
   inset: 0;
   z-index: -2;
   content: "";
-  background-image: url("https://rimg.zhuqiy.top/api/random?type=pc");
+  background-image: var(--hero-bg);
   background-position: 64% center;
   background-size: cover;
   filter: saturate(1.14) contrast(1.03);
@@ -304,6 +304,26 @@ h1 {
   font-size: 16px;
   font-weight: 650;
   line-height: 1.85;
+}
+
+.affiliation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 18px;
+  padding: 8px 12px;
+  color: #26324a;
+  font-size: 14px;
+  font-weight: 950;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(40, 174, 222, 0.26);
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(32, 35, 58, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.affiliation-badge svg {
+  color: var(--blue);
 }
 
 .hero-actions {
@@ -641,6 +661,15 @@ h1 {
   font-size: 14px;
 }
 
+.tool-copy small {
+  display: block;
+  margin-top: 14px;
+  color: rgba(78, 81, 103, 0.78);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
 .tool-visual {
   display: grid;
   align-items: end;
@@ -805,6 +834,36 @@ h1 {
   color: var(--ink);
 }
 
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0 0 42px;
+  color: rgba(78, 81, 103, 0.9);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.footer-notices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.site-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+
+.site-footer a:hover {
+  color: var(--coral);
+}
+
 @media (max-width: 1180px) {
   .guide {
     grid-template-columns: 1fr;
@@ -869,6 +928,7 @@ h1 {
   .intro,
   .intro-stats,
   .work-grid,
+  .site-footer,
   .join {
     grid-template-columns: 1fr;
   }
@@ -895,6 +955,11 @@ h1 {
 
   .join {
     display: grid;
+  }
+
+  .site-footer {
+    display: grid;
+    justify-items: start;
   }
 }
 

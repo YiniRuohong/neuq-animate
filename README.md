@@ -4,6 +4,8 @@
 
 ## Development
 
+首页导航、ACGN 导视、QQ 群入口、社团工具页、近期活动、作品方向与页脚信息统一在 `src/home-content.js` 中维护。
+
 ```bash
 npm ci
 npm run dev
@@ -32,4 +34,3 @@ Vercel 预览需要仓库 Secrets：
 - `VERCEL_TOKEN`
 - `VERCEL_ORG_ID`
 - `VERCEL_PROJECT_ID`
-
