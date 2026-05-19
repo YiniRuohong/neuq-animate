@@ -1,10 +1,14 @@
 # CDN Fallback
 
 Production normally uses Cloudflare DNS-only records pointing at GoEdge edge nodes.
+The DNS-only records use a short TTL so failover propagates quickly.
 
-If GoEdge is attacked or all GoEdge nodes are unavailable, use the manual GitHub
-Actions fallback workflow in this repository:
+If GoEdge is attacked or all GoEdge nodes are unavailable, the scheduled GitHub
+Actions fallback workflow checks GoEdge every 5 minutes and can switch DNS to
+Cloudflare proxied origin mode.
 
+- `mode=auto`: check GoEdge health; remove unhealthy GoEdge nodes; if all GoEdge
+  nodes are unavailable, switch to Cloudflare proxied origin mode.
 - `mode=cloudflare`: replace public DNS with proxied Cloudflare A records to the origin.
 - `mode=goedge`: restore DNS-only A records to GoEdge nodes.
 
@@ -24,7 +28,11 @@ Current constants:
   - `laser.neuq-ani.me`
   - `api.neuq-ani.me`
 
-This workflow is deliberately manual. Full automatic failover should be done with
-Cloudflare Load Balancing health checks or a separate monitor that triggers the
-same DNS replacement logic.
+The scheduled workflow intentionally does not automatically restore from
+Cloudflare mode back to GoEdge mode. Restore manually with `mode=goedge` after
+confirming the attack or outage is over.
 
+For second-level failover and always-on Cloudflare cleaning, use Cloudflare Load
+Balancing instead of DNS-only records: Cloudflare should become the first layer,
+with GoEdge as the default origin pool and the source server as the fallback
+origin pool.
