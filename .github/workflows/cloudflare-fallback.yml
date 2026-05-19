@@ -37,7 +37,7 @@ jobs:
           fi
 
           domains=(neuq-ani.me www.neuq-ani.me oc.neuq-ani.me laser.neuq-ani.me api.neuq-ani.me)
-          goedge_ips=(45.202.240.235 103.232.213.191 103.247.29.99 47.236.2.125 202.61.246.240)
+          goedge_ips=(45.202.240.235 103.232.213.191 103.247.29.99 47.236.2.125)
           origin_ip=202.61.246.240
           health_host=api.neuq-ani.me
           health_path=/health

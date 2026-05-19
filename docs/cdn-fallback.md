@@ -25,7 +25,7 @@ Current constants:
   - JP: `103.232.213.191`
   - HK: `103.247.29.99`
   - SG: `47.236.2.125`
-  - DE: `202.61.246.240`
+- Reserved origin fallback, not a GoEdge DNS candidate: `202.61.246.240`
 - Domains:
   - `neuq-ani.me`
   - `www.neuq-ani.me`
