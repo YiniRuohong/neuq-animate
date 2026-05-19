@@ -1,0 +1,77 @@
+name: Cloudflare fallback
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "cloudflare switches to proxied origin; goedge restores DNS-only GoEdge nodes"
+        required: true
+        type: choice
+        options:
+          - cloudflare
+          - goedge
+
+concurrency:
+  group: cloudflare-fallback
+  cancel-in-progress: false
+
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Switch DNS
+        shell: bash
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CF_API_TOKEN:-}" ] || [ -z "${CF_ZONE_ID:-}" ]; then
+            echo "CF_API_TOKEN and CF_ZONE_ID are required."
+            exit 1
+          fi
+
+          domains=(neuq-ani.me www.neuq-ani.me oc.neuq-ani.me laser.neuq-ani.me api.neuq-ani.me)
+          goedge_ips=(47.236.2.125 103.232.213.191)
+          origin_ip=202.61.246.240
+          api="https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/dns_records"
+
+          cf() {
+            curl -fsS -H "Authorization: Bearer ${CF_API_TOKEN}" -H "Content-Type: application/json" "$@"
+          }
+
+          delete_records() {
+            local name="$1"
+            cf "${api}?name=${name}&per_page=100" | jq -r '.result[].id' | while read -r id; do
+              [ -n "$id" ] && cf -X DELETE "${api}/${id}" >/dev/null
+            done
+          }
+
+          create_a() {
+            local name="$1"
+            local ip="$2"
+            local proxied="$3"
+            local ttl="$4"
+            jq -n \
+              --arg name "$name" \
+              --arg ip "$ip" \
+              --argjson proxied "$proxied" \
+              --argjson ttl "$ttl" \
+              '{type:"A", name:$name, content:$ip, proxied:$proxied, ttl:$ttl}' |
+              cf -X POST --data @- "$api" >/dev/null
+          }
+
+          for domain in "${domains[@]}"; do
+            delete_records "$domain"
+            if [ "$MODE" = "cloudflare" ]; then
+              create_a "$domain" "$origin_ip" true 1
+            else
+              for ip in "${goedge_ips[@]}"; do
+                create_a "$domain" "$ip" false 600
+              done
+            fi
+          done
+
+          echo "DNS switched to ${MODE} mode."
+
