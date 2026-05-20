@@ -12,6 +12,7 @@ export const homeContent = {
     joinGroup: "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=624931693&card_type=group&source=qrcode",
     oc: "https://oc.neuq-ani.me/",
     laser: "https://laser.neuq-ani.me/",
+    shop: "https://shop.neuq-ani.me/",
     github: "https://github.com/YiniRuohong/neuq-animate",
   },
   qqGroup: {
@@ -148,6 +149,15 @@ export const homeContent = {
         icon: "Wrench",
         imageKey: "younger",
         tone: "blue",
+      },
+      {
+        title: "社团周边商店",
+        label: "Club Shop",
+        hrefKey: "shop",
+        desc: "进入社团附属商店，查看活动周边、社团物料与后续开放的购买入口。",
+        icon: "ShoppingBag",
+        imageKey: "older",
+        tone: "pink",
       },
     ],
   },
